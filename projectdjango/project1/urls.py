@@ -10,6 +10,10 @@ path("translate",views.translate,name="translate"),
 path("trans",views.trans,name="trans"),
 path("srans",views.srans,name="srans"),
 path("speechtospeech",views.speechtospeech ,name="speechtospeech"),
+
 path("imagetotext",views.imagetotext ,name="imagetotext"),
 path("speech",views.speech,name='speech'),
 ] 
+
+
+
