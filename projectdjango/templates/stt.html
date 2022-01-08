@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <title>Speech to text conversion using JavaScript</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+        
+
+    </head>
+
+    <body>
+      
+      
+    <div class="code-area">
+        <div class="form-group"> 
+          <div class="input">
+            <textarea class="form-control" id="htmlCode" rows="10" placeholder="HTML Code" 
+            oninput="showPreview()"></textarea>
+          </div>         
+          <button id="start1" class="button-33" title="Start">Start</button>
+          <button id="stop1" class="button-33-stop" title="Stop">Stop</button>
+        </div>
+        <br/>
+      
+      
+
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+var SpeechRecognition = window.webkitSpeechRecognition;
+  
+var recognition1 = new SpeechRecognition();
+
+var Textbox1 = $('#htmlCode');
+
+
+var Content1 = '';
+
+recognition1.continuous = true;
+
+recognition1.onresult = function(event1) {
+
+  var current1 = event1.resultIndex;
+
+  var transcript = event1.results[current1][0].transcript;
+    Content1 += transcript;
+    Textbox1.val(Content1);
+    
+    
+
+};
+
+recognition1.onerror = function(event1) {
+  if(event1.error == 'no-speech') {
+    instructions.text('Try again.');  
+  }
+}
+
+$('#start1').on('click', function(e) {
+  if (Content1.length) {
+    Content1 += ' ';
+  }
+  recognition1.start();
+});
+
+$('#stop1').on('click', function(e) {
+  if (Content1.length) {
+    Content1 += ' ';
+  }
+  recognition1.stop();
+});
+
+Textbox1.on('input', function() {
+    Content1 = $(this).val();
+    
+})
+</script>
+
+    
+
+</html>
